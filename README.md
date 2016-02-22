@@ -46,8 +46,8 @@ Step 5. Run the container
 docker run -d \
   --name my-backup \
   --restart=always \
-  --volume /folder/to/backup:/backup/:ro \
-  --volume /folder/to/backup/keys/:/keys/:ro \
+  --volume /path/to/backup:/backup/:ro \
+  --volume /path/to/gpg/keys/:/keys/:ro \
   --env "CRON_INTERVAL=0 4 * * * " \
   --env "GPG_RECIPIENT=myBackup@myDomain.com" \
   --env "S3_BUCKET_NAME=myBackupBucket" \
@@ -126,7 +126,7 @@ Step 3. Start the restore container
 ```bash
 docker run -it -rm \
   --volume /path/to/restore/folder:/restore/:rw \
-  --volume /path/to/backup/keys/:/keys/:ro \
+  --volume /path/to/gpg/keys/:/keys/:ro \
   --env "GPG_RECIPIENT=\\\\" \
   --env "S3_BUCKET_NAME=\\\\" \
   --env "AWS_ACCESS_KEY_ID=\\\\" \
