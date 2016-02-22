@@ -86,8 +86,9 @@ docker exec my-backup bash /backup.sh
 
 This could take a while if the folder the backup is set up for is bigger than 100MB. After it's done, check if there is a file in your AWS bucket.
 
-Prepare Emergency Restore
-===========
+
+# Prepare Backup Restore
+
 
 Create another policy that is needed for restoring from a previously made backup:
 
@@ -116,7 +117,7 @@ Backup Restore
 
 You should perform a backup restore before actually needing to restore from a backup, just to make sure that everything works the way it's supposed to.
 
-Step 1. Attach the policy created in [Prepare Emergency Restore](#prepare-emergency-restore) to the user that is used for making backups. Now that user is able to restore from backups, too.
+Step 1. Attach the policy created in [Prepare Backup Restore](#prepare-backup-restore) to the user that is used for making backups. Now that user is able to restore from backups, too.
 
 Step 2. Copy the private gpg key into a folder that can be mount by the restore container later.
 
