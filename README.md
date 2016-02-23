@@ -1,13 +1,11 @@
-docker-backup-gpg-s3
-================
+# docker-backup-gpg-s3
 
 Compress a folder, encrypt it and store it on AWS S3.
 
-Why should you encrypt your private files before uploading them on S3? Because Amazon is part of an international policy that treats everyone like terrorists.
+Why should you encrypt your private files before uploading them on S3? Because nobody respects privacy these days. Nobody.
 
 
-Quick Start
-================
+# Quick Start
 
 Step 1. Create an S3 bucket on AWS. Write down the AWS region that was used to create the bucket and don't lose it.
 
@@ -56,8 +54,7 @@ docker run -d \
 
 This container is going to perform a backup every day at 4 am. You can define the backup schedule with ```GPG_RECIPIENT```.
 
-Confirm that your backup container is set up properly
-===========
+# Confirm that your backup container is set up properly
 
 Step 1. Check if Cron is set up
 
@@ -86,6 +83,7 @@ This could take a while if the folder the backup is set up for is bigger than 10
 
 # Prepare Backup Restore
 
+Before you can restore a backup, you have to do the following:
 
 Create another policy that is needed for restoring from a previously made backup:
 
@@ -109,8 +107,7 @@ Create another policy that is needed for restoring from a previously made backup
 }
 ```
 
-Backup Restore
-===========
+# Backup Restore
 
 You should perform a backup restore before actually needing to restore from a backup, just to make sure that everything works the way it's supposed to.
 
@@ -135,17 +132,15 @@ docker run -it -rm \
 You will be asked to enter the name of the backup. If your private gpg key has a password you will be asked for it, too.
 
 
-FAQs
-===========
+# FAQs
 
-How do I generate a GPG key?
------------
+#### Q: How do I generate a GPG key?
 
-Create a key with ```gpg --gen-key``` and export them with
+Create a key with ```gpg --gen-key``` and export them.
 
 
-How do I export a GPG Key from my key chain, so that it can be used in a container volume?
------------
+#### Q: How do I export a GPG Key from my key chain, so that it can be used in a container volume?
+
 
 ```bash
 gpg --output ~/path/to/volume/myKey.gpg.pub --export myBackup@myDomain.com
@@ -153,8 +148,7 @@ gpg --output ~/path/to/volume/myKey.gpg.pub --export myBackup@myDomain.com
 gpg --output ~/path/to/volume/myKey.gpg --export-secret-keys myBackup@myDomain.com
 ```
 
-What can I do if I generate a GPG Key and it tells me I need more entropy?
------------
+#### Q: What can I do if I generate a GPG Key and it tells me I need more entropy?
 
 Fedora/Rh/Centos types: ```sudo yum install rng-tools```
 
@@ -162,7 +156,6 @@ On deb types: ```sudo apt-get install rng-tools``` to set it up.
 
 Then run ```sudo rngd -r /dev/urandom```
 
-The backup container makes backups every day / every week, but it doesn't delete old backup files. How can I delete old backups?
------------
+#### Q: The backup container makes backups every day / every week, but it doesn't delete old backup files. How can I delete old backups?
 
 You can define a lifecycle in the properties of your S3 bucket.
