@@ -2,7 +2,7 @@
 
 # graho/backup-gpg-s3
 
-Compress a folder, encrypt it and store it on AWS S3. Very simple. Just 40 lines of code.
+Compress a folder with XZ Utils, encrypt it with GPG and store it on AWS S3. Very simple. Just 40 lines of code.
 
 Why should you encrypt your private files before uploading them on S3? Because nobody respects privacy these days. Nobody.
 
