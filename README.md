@@ -1,6 +1,6 @@
 [![](https://badge.imagelayers.io/graho/backup-gpg-s3:latest.svg)](https://imagelayers.io/?images=graho/backup-gpg-s3:latest 'Get your own badge on imagelayers.io')
 
-# docker-backup-gpg-s3
+# graho/backup-gpg-s3
 
 Compress a folder, encrypt it and store it on AWS S3.
 
