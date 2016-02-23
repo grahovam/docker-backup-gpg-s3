@@ -48,11 +48,11 @@ docker run -d \
   --env "S3_BUCKET_NAME=myBackupBucket" \
   --env "AWS_ACCESS_KEY_ID=myAWSAccessKey" \
   --env "AWS_SECRET_ACCESS_KEY=myAWSSecretAccess" \
-  --env "AWS_DEFAULT_REGION=eu-central-1" \
+  --env "AWS_DEFAULT_REGION=regionOfMyS3Bucket" \
   graho/backup-gpg-s3
 ```
 
-This container is going to perform a backup every day at 4 am. You can define the backup schedule with ```GPG_RECIPIENT```.
+This container is going to perform a backup every day at 4 am. You can define the backup schedule with ```GPG_RECIPIENT```. You need to adjust the the environment variables to your own data.
 
 # Confirm that your backup container is set up properly
 
@@ -83,7 +83,7 @@ This could take a while if the folder the backup is set up for is bigger than 10
 
 # Prepare Backup Restore
 
-Before you can restore a backup, you have to do the following:
+Before you can restore from a backup, you have to create another AWS IAM policy. You can/should do that before actually being in a situation where you need to restore from a backup.
 
 Create another policy that is needed for restoring from a previously made backup:
 
@@ -121,11 +121,11 @@ Step 3. Start the restore container
 docker run -it -rm \
   --volume /path/to/restore/folder:/restore/:rw \
   --volume /path/to/gpg/keys/:/keys/:ro \
-  --env "GPG_RECIPIENT=\\\\" \
-  --env "S3_BUCKET_NAME=\\\\" \
-  --env "AWS_ACCESS_KEY_ID=\\\\" \
-  --env "AWS_SECRET_ACCESS_KEY=\\\\" \
-  --env "AWS_DEFAULT_REGION=eu-central-1" \
+  --env "GPG_RECIPIENT=myBackup@myDomain.com" \
+  --env "S3_BUCKET_NAME=myBackupBucket" \
+  --env "AWS_ACCESS_KEY_ID=myAWSAccessKey" \
+  --env "AWS_SECRET_ACCESS_KEY=myAWSSecretAccess" \
+  --env "AWS_DEFAULT_REGION=regionOfMyS3Bucket" \
   graho/backup-gpg-s3 bash /restore.sh
 ```
 
