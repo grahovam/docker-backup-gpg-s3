@@ -33,7 +33,7 @@ Step 3. Create the following policy in AWS IAM
 
 and attach it to the User created in Step 2. Replace myBackupBucket with the name you gave to the bucket in Step 1 and be careful to append ```/*``` to it.
 
-Step 4. Copy a public gpg key into a folder that can be mount by the docker container later. It is going to be used to encrypt your backup. Write down the Emailadress of the gpg key and don't lose it.
+Step 4. Copy a public gpg key into a folder that can be mount by the docker container later. It is going to be used to encrypt your backup. Write down the email address of the gpg key and don't lose it.
 
 Step 5. Run the container
 
@@ -52,7 +52,7 @@ docker run -d \
   graho/backup-gpg-s3
 ```
 
-This container is going to perform a backup every day at 4 am. You can define the backup schedule with ```GPG_RECIPIENT```. You need to adjust the the environment variables to your own data.
+This container is going to perform a backup every day at 4 am. You can define the backup schedule with ```CRON_INTERVAL```. You need to adjust the the environment variables to your own data.
 
 # Confirm that your backup container is set up properly
 
