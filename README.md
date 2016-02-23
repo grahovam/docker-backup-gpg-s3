@@ -37,9 +37,6 @@ and attach it to the User created in Step 2. Replace myBackupBucket with the nam
 
 Step 4. Copy a public gpg key into a folder that can be mount by the docker container later. It is going to be used to encrypt your backup. Write down the Emailadress of the gpg key and don't lose it.
 
-
-docker build -t backup-gpg-s3 .
-
 Step 5. Run the container
 
 ```bash
@@ -54,7 +51,7 @@ docker run -d \
   --env "AWS_ACCESS_KEY_ID=myAWSAccessKey" \
   --env "AWS_SECRET_ACCESS_KEY=myAWSSecretAccess" \
   --env "AWS_DEFAULT_REGION=eu-central-1" \
-  backup-gpg-s3
+  graho/backup-gpg-s3
 ```
 
 This container is going to perform a backup every day at 4 am. You can define the backup schedule with ```GPG_RECIPIENT```.
@@ -132,7 +129,7 @@ docker run -it -rm \
   --env "AWS_ACCESS_KEY_ID=\\\\" \
   --env "AWS_SECRET_ACCESS_KEY=\\\\" \
   --env "AWS_DEFAULT_REGION=eu-central-1" \
-  backup-gpg-s3 bash /restore.sh
+  graho/backup-gpg-s3 bash /restore.sh
 ```
 
 You will be asked to enter the name of the backup. If your private gpg key has a password you will be asked for it, too.
