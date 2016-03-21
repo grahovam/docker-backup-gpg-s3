@@ -138,16 +138,16 @@ You will be asked to enter the name of the backup. If your private gpg key has a
 
 #### Q: How do I generate a GPG key?
 
-Create a key with ```gpg --gen-key``` and export them.
+Execute the following: ```gpg --gen-key```
 
 
 #### Q: How do I export a GPG Key from my key chain, so that it can be used in a container volume?
 
 
 ```bash
-gpg --output ~/path/to/volume/myKey.gpg.pub --export myBackup@myDomain.com
+gpg --output ~/path/to/volume/myKey.gpg.pub --export -a myBackup@myDomain.com
 
-gpg --output ~/path/to/volume/myKey.gpg --export-secret-keys myBackup@myDomain.com
+gpg --output ~/path/to/volume/myKey.gpg --export-secret-keys -a myBackup@myDomain.com
 ```
 
 #### Q: What can I do if I generate a GPG Key and it tells me I need more entropy?
