@@ -1,5 +1,3 @@
-[![](https://badge.imagelayers.io/graho/backup-gpg-s3:latest.svg)](https://imagelayers.io/?images=graho/backup-gpg-s3:latest 'Get your own badge on imagelayers.io')
-
 # graho/backup-gpg-s3
 
 A **Docker** container that mounts a volume, compresses it with **XZ Utils**, encrypts it with **GPG** and stores it on **AWS S3**. Very simple and secure. Just 40 lines of code.
