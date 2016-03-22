@@ -118,7 +118,7 @@ Step 2. Copy the private gpg key into a folder that can be mount by the restore 
 Step 3. Start the restore container
 
 ```bash
-docker run -it -rm \
+docker run -it --rm \
   --volume /path/to/restore/folder:/restore/:rw \
   --volume /path/to/gpg/keys/:/keys/:ro \
   --env "GPG_RECIPIENT=myBackup@myDomain.com" \
