@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-: ${BACKUP_DATE:=_$(date +"%Y-%m-%d_%H-%M")}
+BACKUP_DATE=$(date +"%Y-%m-%d_%H-%M")
 
 cd /backup
 tar cJf ~/$S3_BUCKET_NAME$BACKUP_DATE.tar.xz ./*
