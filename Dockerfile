@@ -1,9 +1,11 @@
-FROM ubuntu:14.04.3
+FROM alpine:3.4
 MAINTAINER technik@myfoodmap.de
 
-RUN apt-get update && apt-get install -y \
-  python-pip \
-  xz-utils
+RUN apk add --update \
+    py-pip \
+    gpgme \
+    xz \
+    && rm -rf /var/cache/apk/*
 
 RUN pip install awscli
 

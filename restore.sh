@@ -1,3 +1,5 @@
+#!/bin/sh
+
 gpg --import /keys/*
 
 aws s3 ls s3://$S3_BUCKET_NAME
